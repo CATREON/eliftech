@@ -69,7 +69,7 @@ function updateCartUI() {
 
 
 function fetchShops() {
-    fetch('http://localhost:3000/api/shops')
+    fetch('https://eliftech-1yt6.onrender.com/api/shops')
         .then(response => response.json())
         .then(data => {
             const shopsContainer = document.getElementById('shops');
@@ -84,7 +84,7 @@ function fetchShops() {
 }
 
 function fetchDrugs(shopId) {
-    let url = 'http://localhost:3000/api/drugs';
+    let url = 'https://eliftech-1yt6.onrender.com/api/drugs';
     if (shopId) {
         url += `?shopId=${shopId}`;
     }
@@ -126,7 +126,7 @@ function submitOrder() {
         quantity,
     }));
 
-    fetch('http://localhost:3000/api/orders', {
+    fetch('https://eliftech-1yt6.onrender.com/api/orders', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -136,7 +136,6 @@ function submitOrder() {
     .then(response => response.json())
     .then(data => {
         console.log('Order submission response:', data);
-        // You might want to clear the cart or show a success message here.
     })
     .catch(error => {
         console.error('Error submitting order:', error);
