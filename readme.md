@@ -1,21 +1,28 @@
-# My Awesome Project
-
-Test task for eliftech
+# Test task for eliftech
 
 ## Installation
 
 To install dependencies, run:
-```npm install```
+
+```
+npm install
+```
 
 
 To install Express, run:
-```npm install express```
+
+```
+npm install express
+```
 
 
 ## Usage
 
 To start the server, run:
-```node server.js```
+
+```
+node server.js
+```
 
 
 ## Environment Variables
