@@ -74,7 +74,6 @@ app.get('/api/drugs/:id', async (req, res) => {
     try {
         const { rows } = await pool.query('SELECT * FROM Drugs WHERE Id = $1', [drugId]);
 
-        // Check if drug was found
         if (rows.length === 0) {
             return res.status(404).json({ error: 'Drug not found' });
         }
@@ -96,7 +95,7 @@ app.post('/api/orders', async (req, res) => {
     const { name, email, phone, address, orderDetails } = req.body;
 
     try {
-        await pool.query('BEGIN'); // Start transaction
+        await pool.query('BEGIN');
 
         const orderResult = await pool.query(
             'INSERT INTO Orders(Name, Email, Phone, Address) VALUES($1, $2, $3, $4) RETURNING Id',
@@ -112,11 +111,11 @@ app.post('/api/orders', async (req, res) => {
             );
         }
 
-        await pool.query('COMMIT'); // Commit transaction
+        await pool.query('COMMIT');
 
         res.json({ success: true, message: 'Order placed successfully', orderId });
     } catch (err) {
-        await pool.query('ROLLBACK'); // Rollback transaction on error
+        await pool.query('ROLLBACK');
         console.error(err);
         res.status(500).json({ error: 'Internal server error' });
     }
